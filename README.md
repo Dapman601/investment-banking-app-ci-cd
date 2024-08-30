@@ -22,24 +22,24 @@ Set up a CI/CD pipeline to automate the build, test, and deployment processes fo
 
 ### Tools
 
-- **CI/CD Tool:** GitHub Actions
-- **Source Control:** GitHub
+- CI/CD Tool: GitHub Actions
+- Source Control: GitHub
 
 ### Implementation
 
-1. **Create a `.github/workflows` Directory:**
+1. Create a `.github/workflows` Directory:
 
    In your GitHub repository for `first-ally`, create a directory called `.github/workflows`:
 
-   ```bash
+   bash
    mkdir -p .github/workflows
-   ```
+   
 
-2. **Configure GitHub Actions Workflow Files:**
+2. Configure GitHub Actions Workflow Files:
 
-   - **Flutter App Workflow (`flutter.yml`):**
+   - Flutter App Workflow (`flutter.yml`):
 
-     ```yaml
+     yaml
      name: Flutter CI
 
      on:
@@ -65,11 +65,11 @@ Set up a CI/CD pipeline to automate the build, test, and deployment processes fo
 
          - name: Run tests
            run: flutter test
-     ```
+     
 
-   - **.NET Core Backend Workflow (`dotnet.yml`):**
+   - .NET Core Backend Workflow (`dotnet.yml`):
 
-     ```yaml
+     yaml
      name: .NET Core CI
 
      on:
@@ -98,11 +98,11 @@ Set up a CI/CD pipeline to automate the build, test, and deployment processes fo
 
          - name: Run tests
            run: dotnet test --configuration Release
-     ```
+     
 
-   - **React Web App Workflow (`react.yml`):**
+   - React Web App Workflow (`react.yml`):
 
-     ```yaml
+     yaml
      name: React CI
 
      on:
@@ -131,7 +131,7 @@ Set up a CI/CD pipeline to automate the build, test, and deployment processes fo
 
          - name: Run tests
            run: npm test
-     ```
+     
 
 ## 2. Logging and Monitoring
 
@@ -141,22 +141,22 @@ Implement logging and monitoring for the `first-ally` application using Applicat
 
 ### Tools
 
-- **Logging:** Application Insights
-- **Monitoring:** Prometheus, Grafana
+- Logging: Application Insights
+- Monitoring: Prometheus, Grafana
 
 ### Implementation
 
-1. **Set Up Application Insights:**
+1. Set Up Application Insights:
 
    Configure Application Insights in Azure to collect logs and telemetry from the backend and web application.
 
-2. **Set Up Prometheus and Grafana:**
+2. Set Up Prometheus and Grafana:
 
-   - **Prometheus Configuration:**
+   - Prometheus Configuration:
 
      Create a `prometheus.yml` file to scrape metrics:
 
-     ```yaml
+     yaml
      scrape_configs:
        - job_name: 'first-ally-backend'
          static_configs:
@@ -165,9 +165,9 @@ Implement logging and monitoring for the `first-ally` application using Applicat
        - job_name: 'first-ally-react'
          static_configs:
            - targets: ['<react-url>:<port>']
-     ```
+     
 
-   - **Grafana Configuration:**
+   - Grafana Configuration:
 
      Import Prometheus as a data source and create dashboards to visualize metrics such as:
 
@@ -175,10 +175,10 @@ Implement logging and monitoring for the `first-ally` application using Applicat
      - Error rates
      - CPU and memory usage
 
-     **Example Dashboard:**
+     Example Dashboard:
 
-     - **Backend Performance Dashboard:** Metrics on API response times and error rates.
-     - **React Application Dashboard:** Metrics on frontend performance and errors.
+     - Backend Performance Dashboard: Metrics on API response times and error rates.
+     - React Application Dashboard: Metrics on frontend performance and errors.
 
 ## 3. Cloud Cost Optimization
 
@@ -188,22 +188,22 @@ Optimize cloud infrastructure costs while maintaining application performance.
 
 ### Tools
 
-- **Azure Cost Management**
-- **Auto-Scaling**
+- Azure Cost Management
+- Auto-Scaling
 
 ### Implementation
 
-1. **Choose Cost-Effective Services:**
+1. Choose Cost-Effective Services:
 
    Use Azure services like App Service for React and Azure Kubernetes Service (AKS) for .NET Core backend.
 
-2. **Implement Auto-Scaling:**
+2. Implement Auto-Scaling:
 
    Configure auto-scaling for backend and web applications:
 
-   - **Backend Auto-Scaling:**
+   - Backend Auto-Scaling:
 
-     ```hcl
+     hcl
      resource "azurerm_monitor_autoscale_setting" "first-ally-backend" {
        name                = "first-ally-backend-autoscale"
        resource_group_name = azurerm_resource_group.first-ally.name
@@ -233,7 +233,7 @@ Optimize cloud infrastructure costs while maintaining application performance.
      }
      ```
 
-3. **Set Up Budget Alerts:**
+3. Set Up Budget Alerts:
 
    Configure budget alerts in Azure Cost Management to monitor and manage expenses.
 
@@ -245,17 +245,17 @@ Design a secure and efficient network architecture for the `first-ally` applicat
 
 ### Tools
 
-- **Azure Virtual Network (VNet)**
-- **Azure Load Balancer**
-- **Network Security Groups (NSGs)**
+- Azure Virtual Network (VNet)
+- Azure Load Balancer
+- Network Security Groups (NSGs)
 
 ### Implementation
 
-1. **Create a Virtual Network:**
+1. Create a Virtual Network:
 
    Set up a VNet with subnets for backend and web applications:
 
-   ```hcl
+   hcl
    resource "azurerm_virtual_network" "first-ally" {
      name                = "first-ally-vnet"
      resource_group_name = azurerm_resource_group.first-ally.name
@@ -282,11 +282,11 @@ Design a secure and efficient network architecture for the `first-ally` applicat
    }
    ```
 
-2. **Set Up Load Balancer:**
+2. Set Up Load Balancer:
 
    Configure a load balancer to distribute traffic:
 
-   ```hcl
+   hcl
    resource "azurerm_load_balancer" "first-ally" {
      name                = "first-ally-load-balancer"
      resource_group_name = azurerm_resource_group.first-ally.name
@@ -316,13 +316,13 @@ Design a secure and efficient network architecture for the `first-ally` applicat
        probe_id          = azurerm_load_balancer_probe.first-ally.id
      }
    }
-   ```
+   
 
-3. **Configure Network Security Groups (NSGs):**
+3. Configure Network Security Groups (NSGs):
 
    Create NSGs to manage traffic:
 
-   ```hcl
+   hcl
    resource "azurerm_network_security_group" "first-ally" {
      name                = "first-ally-nsg"
      resource_group_name = azurerm_resource_group.first-ally.name
@@ -356,17 +356,17 @@ Choose and configure a suitable managed database service for the backend of the 
 
 ### Tools
 
-- **Azure SQL Database**
-- **Azure Cosmos DB**
-- **Azure Database for PostgreSQL / MySQL**
+- Azure SQL Database
+- Azure Cosmos DB
+- Azure Database for PostgreSQL / MySQL
 
 ### Implementation
 
-1. **Azure SQL Database:**
+1. Azure SQL Database:
 
    Set up Azure SQL Database for relational data:
 
-   ```hcl
+   hcl
    resource "azurerm_sql_server" "first-ally" {
      name                         = "first-ally-sql-server"
      resource_group_name          = azurerm_resource_group.first-ally.name
@@ -392,13 +392,13 @@ Choose and configure a suitable managed database service for the backend of the 
        Name = "first-ally-sql-db"
      }
    }
-   ```
+   
 
-2. **Azure Cosmos DB:**
+2. Azure Cosmos DB:
 
    Set up Azure Cosmos DB for global, multi-model data storage:
 
-   ```hcl
+   hcl
    resource "azurerm_cosmosdb_account" "first-ally" {
      name                = "first-ally-cosmosdb"
      resource_group_name = azurerm_resource_group.first-ally.name
@@ -417,15 +417,15 @@ Choose and configure a suitable managed database service for the backend of the 
        Name = "first-ally-cosmosdb"
      }
    }
-   ```
+   
 
-3. **Azure Database for PostgreSQL / MySQL:**
+3. Azure Database for PostgreSQL / MySQL:
 
    Choose Azure Database for PostgreSQL or MySQL based on needs:
 
-   - **PostgreSQL Example:**
+   - PostgreSQL Example:
 
-     ```hcl
+     hcl
      resource "azurerm_postgresql_server" "first-ally" {
        name                = "first-ally-postgres-server"
        resource_group_name = azurerm_resource_group.first-ally.name
@@ -454,11 +454,11 @@ Choose and configure a suitable managed database service for the backend of the 
          Name = "first-ally-db"
        }
      }
-     ```
+     
 
-   - **MySQL Example:**
+   - MySQL Example:
 
-     ```hcl
+     hcl
      resource "azurerm_mysql_server" "first-ally" {
        name                = "first-ally-mysql-server"
        resource_group_name = azurerm_resource_group.first-ally.name
@@ -487,7 +487,7 @@ Choose and configure a suitable managed database service for the backend of the 
          Name = "first-ally-db"
        }
      }
-     ```
+     
 
 ## 6. Deployment and Rollbacks
 
@@ -497,22 +497,22 @@ Implement a deployment strategy with support for rollbacks to ensure reliable up
 
 ### Tools
 
-- **GitHub Actions**
-- **Azure App Service or Azure Kubernetes Service (AKS)**
+- GitHub Actions
+- Azure App Service or Azure Kubernetes Service (AKS)**
 
 ### Implementation
 
-1. **Deploy Application:**
+1. Deploy Application:
 
-   - **Flutter Mobile App:** Deploy to a cloud service or distribute via app stores.
-   - **.NET Core Backend:** Deploy to Azure App Service or AKS.
-   - **React Web Application:** Deploy to Azure App Service or static web hosting.
+   - Flutter Mobile App: Deploy to a cloud service or distribute via app stores.
+   - .NET Core Backend: Deploy to Azure App Service or AKS.
+   - React Web Application: Deploy to Azure App Service or static web hosting.
 
-2. **Rollback Strategy:**
+2. Rollback Strategy:
 
    Implement rollback mechanisms using deployment slots or versioning in your CI/CD pipeline. For Azure App Service, use deployment slots to stage changes and swap slots to roll back if needed.
 
-   ```yaml
+   yaml
    - name: Deploy to Staging
      uses: azure/appservice-deploy@v1
      with:
